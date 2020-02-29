@@ -1,0 +1,18 @@
+syms d2 d3 d4 l2 l3 l4 a b c d num denum x1 x2;
+
+l2 = 1/d2;
+l3 = 1/d3;
+l4 = 1/d4;
+
+a = l2 + l3 + l4;
+b = -l2 -l3 + l4;
+c = l2 - l3 - l4;
+e = -l2 + l3 - l4;
+
+x1 = 1;
+x2 = 1;
+
+denum = a^3 + 2*b*c*e - a*(b^2 + c^2 + e^2);
+num = a^2 - e^2 + 2*(c*e -a*b)*x1 + 2*(b*e - a*c)*x2 + 2*(b*c - a*e)*x1*x2 + (a^2 - c^2)*x1^2 + (a^2 - b^2)*x2^2;
+
+simplify(num / denum)

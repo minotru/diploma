@@ -1,0 +1,104 @@
+	Математической моделью эксперимента является
+	\begin{equation*}
+		y = f(x, \theta)  
+	\end{equation*}
+	где $y$ - вектор наблюдаемых значений;\\
+	$x$ - вектор факторов или контролируемых параметров;\\
+	$\theta$ - неизвестные параметры;\\
+	$f(x, \theta)$ - некоторая неизвестная функция.
+	
+	Модель в случае линейной регрессии имеет вид
+	\begin{equation*}
+		y = \theta_1 f_1(x) +...+ \theta_m f_m(x) = \theta'f(x)
+	\end{equation*}
+	где $y$ -  вектор наблюдаемых значений;\\
+		$(x_1,...,x_m)=x$ - вектор факторов или контролируемых параметров;\\
+		$(\theta_1,...,\theta_m)=\theta$ - неизвестные параметры;\\
+		$(f_1(x),...,f_m(x))=f(x)$ - известные функции.\\
+	
+	Пусть было проведено $n$ наблюдений
+	\begin{equation}
+		y_i = \theta' f(x^{(i)}) + \varepsilon_i, i = \overline{1, n}, n \ge m
+	\end{equation}
+	где $\varepsilon_i$ - ошибки наблюдений:
+		$$E\{\varepsilon_i\} = 0$$
+		$$E\{\varepsilon_i \varepsilon_j\} = 0, i \ne j$$
+		$$D\{\varepsilon_i\}=\sigma_i ^2$$
+	
+	Пусть $\hat{\theta} =T(x^{(1)},..,x^{(n)}) $ - некоторая оценка параметра $\theta$.\\
+	
+	
+	\newtheorem{theorem}{Теорема}
+	
+	\begin{theorem}[о наилучшей линейной оценке неизвестного параметра]
+		\begin{equation}
+			\hat{\theta} = M^{-1} Y
+		\end{equation}
+		где 
+		$$M = \sum_{i=1}^{n} \frac{1}{\sigma_i^2}f(x^{i})f'(x^{i}), |M| \ne 0 \text{ - информационная матрица Фишера}$$
+		$$Y = \sum_{i=1}^{n}\frac{1}{\sigma_i^2} y_i f(x^{i})$$
+		И дисперсионная матрица оценок $\hat \theta$ равна
+			\begin{equation}D(\hat \theta)  = M^{-1}\end{equation}
+	\end{theorem}
+	
+	Существуют различные критерии оптимальности плана эксперимента. В данной работе будут рассмотрены $D$-оптимальные планы.
+	\newtheorem{definition}{Определение}
+	\begin{definition}
+		План эксперимента называется $D$-оптимальным, когда
+		\begin{equation}\label{def:d-opt}
+			|\det D\{\hat \theta\} | \rightarrow \min_{x \in X}
+		\end{equation}
+	\end{definition}
+	Но
+	\begin{equation*}
+		|\det {D\{\hat \theta\}}| = \frac 1 {|\det M(x)|} \implies (\ref{def:d-opt}) \iff |det M(x)| \rightarrow \max_{x \in X}
+	\end{equation*}
+	Таким образом задача построение оптимального плана свелась к максимизации информационной матрицы.
+	
+	Обозначим
+	\begin{equation*}
+			X = 
+			\begin{bmatrix}
+				x_{11}	&	\dots	&	x_{1m}\\
+				\dots	&	\dots	&	\dots\\
+				x_{n1}	&	\dots	&	x_{nm}
+			\end{bmatrix} \text{ - матрица плана эксперимента}$$
+			$$\varepsilon = (\varepsilon_1,.., \varepsilon_n,) \in R^n, E\{\varepsilon\} = 0, E\{\varepsilon \varepsilon'\}=I_n
+	\end{equation*}
+	
+	Тогда задача (1) в матричной форме:
+	\begin{equation}
+		y = X \theta + \varepsilon
+	\end{equation}
+	
+	Также без ограничения общности для каждого набора $x$ можем считать, что  $x_k \in [-1, 1]$, так как линейным преобразованием отрезок $x_k \in [a_k, b_k]$ можно перевести в $[-1, 1]$:
+	$$z_k = \frac{x_k - (a_k + b_k)/2}{(b_k - a_k)/2}, k = \overline{1, m}$$  
+	
+	\begin{definition}
+		Совокупность величин
+		\begin{gather*}
+			x_1, x_2, \dots, x_n;\\
+			r_1, r_2, \dots, r_n;\\
+			\sum_{i=1}^n r_i = N
+		\end{gather*}
+		называется планом (эксперимента) $\varepsilon(N)$. Совокупность точек  $x_1, x_2, \dots, x_n$ называется спектром плана $\varepsilon(N)$.
+	\end{definition}
+	
+	\begin{definition}
+		Нормированным планом $\varepsilon(N)$ называется совокупность величин
+		\begin{gather*}
+			x_1, x_2, \dots, x_n;\\
+			p_1, p_2, \dots, p_n;\\
+			\sum_{i = 1}^n p_i = 1, p_i = \frac {r_i} {N}.
+		\end{gather*}
+	\end{definition}
+	
+	В условиях, когда  $N$ настолько велико, что функцию потерь можно рассматривать как непрерывную по $N$, вводится понятие непрерывного нормированного плана.
+	\begin{definition}
+		Непрерывным нормированным планом называется совокупность величин
+		\begin{gather*}
+			x_1, x_2, \dots, x_n;\\
+			\rho_1, \rho_2, \dots, \rho_n;\\
+			\sum_{i = 1}^n \rho_i = 1, \rho_i \in (0, 1).
+		\end{gather*}
+	\end{definition}

@@ -1,0 +1,53 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{indentfirst}
+\usepackage{misccorr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\graphicspath{ {./images/} }
+
+\usepackage[unicode, pdftex,pdfpagelabels,bookmarks,hyperindex,hyperfigures]{hyperref}
+
+\lstset{
+numbers=left, 
+numberstyle=\small, 
+numbersep=8pt, 
+frame = single,
+framexleftmargin=0pt,
+breaklines=true
+}
+
+\begin{document}
+
+\include{titlepage}
+
+\tableofcontents
+\pagebreak
+
+\section{Введение}
+	\input{introduction}
+\pagebreak
+
+\section {Основные понятия}
+	\input{basic_theory}
+\pagebreak
+	
+\section{Основные результаты}
+	\input{results}
+	
+\pagebreak
+	
+\section{Выводы}
+	\input{conclusions}
+\pagebreak
+	
+\addcontentsline{toc}{section}{Список используемой литературы}
+\begin{thebibliography}{}
+	\bibitem{fedorov} В.В Федоеов - "Теория оптимального эксперимента"
+	\bibitem{kirlitsa2017} В.П. Кирлица - "Точные  D-оптимальные планы экспериментов для линейной множественной регрессии с неравноточными наблюдениями"
+	\bibitem{kirlitsa2019} В.П. Кирлица - "Построение  D-оптимальных  планов экспериментов для линейной множественной регрессии с неравноточными наблюдениями"
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,79 @@
+	
+Рассмотрим следующую модель наблюдений:
+\begin{equation} \label{linear-model:start}
+y_i = \theta_0 + \theta_1 x_{i1} + \theta_2 x_{i2} + \varepsilon(x^{(i)}), |x_{i j}| \le 1, i = \overline{1, n}, j = \overline{1, 2}
+\end{equation}
+\begin{equation} \begin{split}
+E\{\varepsilon(x^{(i)}) \varepsilon(x^{(j)}) \} = 0, i \ne j \\
+E\{\varepsilon(x^{(i)}) = 0
+\end{split}\end{equation}
+\begin{equation}\label{linear-model:end}
+D\{ \varepsilon( x^{(i)} ) \} = a_0 + a_1 x_{i1} + a_2 x_{i2},
+a_0 > 0, |a_1| + |a_2| < a_0
+\end{equation}
+Справедлива следующая теорема.
+\begin{theorem}
+	Для модели наблюдений \eqref{linear-model:start}-\eqref{linear-model:end} существует точный $D$-оптимальный план, точки спектра которого лежат в вершинах единичного квадрата.
+\end{theorem}
+Доказательство данной теоремы может быть найдено в \cite{kirlitsa2017}.
+Точный D-оптимальный план при заданном $n$ будет иметь следующий вид:
+\begin{equation}
+\varepsilon^{0} = \left \{ 
+\underset{n_1} {x^{(1)}},
+\underset{n_2} {x^{(2)}},
+\underset{n_3} {x^{(3)}},
+\underset{n_4} {x^{(4)}},
+\right \}
+\end{equation}
+где $n_i$ - число наблюдений, которое нужно провести в точке $x^{(i)}$.\\
+Однако числа $n_1, n_2, n_3, n_4$ не известны. Составим программу, которая для заданной функции дисперсии будет находить оптимальное размещение наблюдений в вершинах спектра плана.
+Для этого воспользуемся тем фактом, что оптимальный план максимизирует определитель информационной матрицы Фишера $M(\varepsilon)$:
+\begin{multline*} 
+M(\varepsilon) = \sum_{i = 1}^{4} \frac{n_i} {d_i} 
+\begin{pmatrix}1 \\ x_{i1} \\ x_{i2} \end{pmatrix}
+(1, x_{i1}, x_{i2}) = \\
+= \frac {n_1} {d_1} \begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix} (1, 1, 1) + 
+\frac {n_2} {d_2} \begin{pmatrix}1 \\ -1 \\ 1\end{pmatrix} (1, -1, 1) + \\
++ \frac {n_3} {d_3} \begin{pmatrix}1 \\ -1 \\ -1\end{pmatrix} (1, -1, -1) +
+\frac {n_4)} {d_4} \begin{pmatrix} 1 \\ 1 \\ -1\end{pmatrix} (1, 1, -1) = \\
+= \begin{pmatrix}
+\lambda_1 + \lambda_2 + \lambda_3 + \lambda_4 &&
+\lambda_1 - \lambda_2 - \lambda_3 + \lambda_4 &&
+\lambda_1 + \lambda_2 - \lambda_3 - \lambda_4
+\\
+\lambda_1 - \lambda_2 - \lambda_3 + \lambda_4 &&
+\lambda_1 + \lambda_2 + \lambda_3 + \lambda_4 &&
+\lambda_1 - \lambda_2 + \lambda_3 - \lambda_4
+\\
+\lambda_1 + \lambda_2 - \lambda_3 - \lambda_4 &&
+\lambda_1 - \lambda_2 + \lambda_3 - \lambda_4 &&
+\lambda_1 + \lambda_2 + \lambda_3 + \lambda_4
+\end{pmatrix} = \\
+= \begin{pmatrix}
+a && b && c \\
+b && a && e \\
+c && e && a
+\end{pmatrix},
+\end{multline*}
+где
+\begin{gather*}
+\lambda_i = \frac {n_i} {d_i}, \\
+a, b, c, e - \text{ соответствующие элемементы матрицы }.
+\end{gather*}
+Формулы для вычисления определителя подобной матрицы были получены нами ранее.
+
+Тогда для нахождения оптимального плана необходимо перебрать различные наборы $n_1, n_2, n_3, n_4$ и посмотреть, какие из них максимизируют определитель информационной матрицы. Именно это и делает следующая программа на языке Python:
+
+\lstinputlisting[language=Python]{listings/check_ns.py}
+
+Вывод программы:
+\lstinputlisting[numbers=none]{listings/check_ns_output.txt}
+
+
+Для каждой поверхности $d(x_1, x_2)$ программа выводит массив оптимальных размещений наблюдений \textit{best placements}, каждый элемент которого есть $[n1, n2, n3, n4]$ -  количесто наблюдений в точках $x^{(1)}, x^{(2)}, x^{(3)}, x^{(4)}$ соответственно.\\
+Проанализируем полученные результаты.\\
+$n = 5$.\\
+В первом случае рассматривается поверхность $d(x_1, x_2) \ge 40 + 0*x_1 + 0*x_2$, то есть равноточные наблюдения. В таких условиях существует 4 оптимальных плана, при которых в 3-х вершинах спектра по 1-му наблюдению и 2 наблюдения в 4-ой точке. \\
+Далее рассматривается поверхность $d(x_1, x_2) \ge 40 - 1*x_1 + 0*x_2$. Видим, что при незначительном наклоне поверхности оптимальный план не изменяется. \\
+Однако в случае $d(x_1, x_2) \ge 40 - 8*x_1 + 0*x_2$ существует уже только 2 оптимальных плана: 2 наблюдения размещаются в "менее поднятых" вершинах.\\
+В критическом случае $d(x_1, x_2) \ge 40 - 39.5*x_1 + 0*x_2$ существует всего 1 оптимальный план.

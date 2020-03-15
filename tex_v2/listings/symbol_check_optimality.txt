@@ -1,0 +1,90 @@
+disp('Plan in points (x2, x3 ,x4)')
+disp(['d(-1, 1)=', char(check_234(-1, 1))])
+disp(['d(-1, -1)=', char(check_234(-1, -1))])
+disp(['d(1, -1)=', char(check_234(1, -1))])
+
+disp('Plan in points (x1, x2 , x3)')
+disp(['d(1, 1)=', char(check_123(1, 1))])
+disp(['d(-1, 1)=', char(check_123(-1, 1))])
+disp(['d(-1, -1)=', char(check_123(-1, -1))])
+
+disp('Plan in points (x1, x2 , x3)')
+disp(['d(1, 1)=', char(check_124(1, 1))])
+disp(['d(-1, 1)=', char(check_124(-1, 1))])
+disp(['d(1, -1)=', char(check_124(1, -1))])
+
+disp('Plan in points (x1, x3 , x4)')
+disp(['d(1, 1)=', char(check_134(1, 1))])
+disp(['d(-1, -1)=', char(check_134(-1, -1))])
+disp(['d(1, -1)=', char(check_134(1, -1))])
+
+
+
+function res = check(a, b, c, e, x1, x2)
+    num = a^2 - e^2 + 2*(c*e -a*b)*x1 + ...
+    	2*(b*e - a*c)*x2 + ...
+    	2*(b*c - a*e)*x1*x2 + ...
+    	(a^2 - c^2)*x1^2 + (a^2 - b^2)*x2^2;
+    denum = a^3 + 2*b*c*e - a*(b^2 + c^2 + e^2);
+    res = simplify(num / denum);
+end
+
+function res = check_234(x1, x2)
+    syms d2 d3 d4 l2 l3 l4 a b c e;
+
+    l2 = 1/d2;
+    l3 = 1/d3;
+    l4 = 1/d4;
+
+    a = l2 + l3 + l4;
+    b = -l2 -l3 + l4;
+    c = l2 - l3 - l4;
+    e = -l2 + l3 - l4;
+    
+    res = check(a, b, c, e, x1, x2);
+end
+
+function res = check_123(x1, x2)
+    syms d1 d2 d3 l1 l2 l3 a b c e;
+
+    l1 = 1/d1;
+    l2 = 1/d2;
+    l3 = 1/d3;
+
+    a = l1 + l2 + l3;
+    b = l1 - l2 - l3;
+    c = l1 + l2 - l3;
+    e = l1 - l2 + l3;
+    
+    res = check(a, b, c, e, x1, x2);
+end
+
+function res = check_124(x1, x2)
+    syms d1 d2 d4 l1 l2 l4 a b c e;
+
+    l1 = 1/d1;
+    l2 = 1/d2;
+    l4 = 1/d4;
+
+    a = l1 + l2 + l4;
+    b = l1 - l2 + l4;
+    c = l1 + l2 - l4;
+    e = l1 - l2 - l4;
+    
+    res = check(a, b, c, e, x1, x2);
+end
+
+function res = check_134(x1, x2)
+    syms d1 d3 d4 l1 l3 l4 a b c e;
+
+    l1 = 1/d1;
+    l3 = 1/d3;
+    l4 = 1/d4;
+
+    a = l1 + l3 + l4;
+    b = l1 - l3 + l4;
+    c = l1 - l3 - l4;
+    e = l1 + l3 - l4;
+    
+    res = check(a, b, c, e, x1, x2);
+end

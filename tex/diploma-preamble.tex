@@ -5,7 +5,8 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
-\usepackage[T1, T2A]{fontenc}
+\usepackage[T1,T2A]{fontenc}
+\usepackage{textcase}
 \usepackage{fixltx2e}
 \usepackage{grffile}
 \usepackage{longtable}
@@ -25,13 +26,19 @@
 
 \graphicspath{ {./images/} }
 
+\renewcommand*{\lstlistingname}{Листинг}
+
 \lstset{
 	numbers=left, 
 	numberstyle=\small, 
 	numbersep=8pt, 
 	frame = single,
 	framexleftmargin=0pt,
-	breaklines=true
+	breaklines=true,
+	tabsize=2,
+	showspaces=false,
+	captionpos=b,
+	showstringspaces=false
 }
 
 \setcounter{secnumdepth}{2}
@@ -115,4 +122,28 @@
   pdfkeywords={СПИСОК КЛЮЧЕВЫХ СЛОВ, КАСАЮЩИХСЯ ТЕМЫ РАБОТЫ},
   pdfsubject={Тема работы},
   pdfcreator={xelatex},
-  pdflang={Russian}}
+  pdflang={Russian}
+}
+
+
+\gdef\goodbreak{\par\penalty-500}
+\renewcommand\appendixname{Приложение}
+\gdef\appendix{
+	\par
+	\setcounter{section}{0}
+	\setcounter{subsection}{0}
+	\def\thesection{\Asbuk{section}}
+	\def\section##1{
+		\refstepcounter{section}
+
+		\begin{center}
+			\goodbreak\noindent{
+				\indent\Large\bf\hbox to 8.5em{\MakeTextUppercase{\appendixname}\ \thesection\hss}
+				\nobreak\vspace{1em}\nobreak\noindent
+				\linebreak
+				##1
+			}
+		\end{center}
+		\addcontentsline{toc}{chapter}{\hbox to 8.5em{\appendixname\ \thesection\hss}\hspace{0.8ex}##1}
+	}
+}

@@ -1,4 +1,4 @@
-В пункте \ref{chapter2/diploma-section-2-1} была рассмотрена модель линейной регрессии \eqref{model:start}-\eqref{model:end} с 3-мя параметрами и 2-мя независимыми переменными.
+В пункте \ref{chapter2/diploma-section-2-1} была рассмотрена модель линейной регрессии \eqref{model:start}-\eqref{model:end} с тремя параметрами и двумя независимыми переменными.
 Обобщим данную модель, вводя третью независимую переменную $x_0$:
 \begin{gather} \label{model-3x:start}
 y_i = \theta_0 x_{i0} + \theta_1 x_{i1} + \theta_2 x_{i2} + \varepsilon(x^{(i)}), i = \overline{1, n}, n \ge 3 \\
@@ -22,8 +22,8 @@ d_i = d(x^{(i)}), i = \overline{1, 8}.
 \end{equation}
 
 В теореме \ref{main-theorem} было показано, что для модели с двумя независимыми переменными \eqref{model:start}-\eqref{model:end} можно построить трёхточеный $D$-оптимальный план.  
-Попробуем построить трёхточечный $D$-оптимальный план для модели тремя независимыми переменными  \eqref{model-3x:start}-\eqref{model-3x:end}.
-\begin{theorem}\label{theorem:model-3x-D-opt}
+Попробуем построить трёхточечный $D$-оптимальный план для модели с тремя независимыми переменными  \eqref{model-3x:start}-\eqref{model-3x:end}.
+\begin{theorem}.\label{theorem:model-3x-D-opt}
 	Для модели неравноточных наблюдений \eqref{model-3x:start}-\eqref{model-3x:end} следующие трехточечные планы являются непрерывными и $D$-оптимальными.\\
 	План 
 	\begin{equation} \label{theorem:model-3x-D-opt:plan-1}
@@ -32,7 +32,7 @@ d_i = d(x^{(i)}), i = \overline{1, 8}.
 	\underset{\frac 1 3} {x^{(2)}},
 	\underset{\frac 1 3} {x^{(3)}}
 	\right \},
-	\end{equation},
+	\end{equation}
 	если для дисперсии наблюдений выполняется:
 	\begin{multline}\label{theorem:model-3x-D-opt:plan-1-d}
 	d(x_0, x_1, x_2) \ge \frac{d_{2} x_{1} x_{2}}{2} + x_{0}^{2} \left(\frac{d_{1}}{4} + \frac{d_{3}}{4}\right) + x_{0} \left(\frac{d_{1} x_{1}}{2} - \frac{d_{3} x_{2}}{2}\right) + \\ + x_{1}^{2} \left(\frac{d_{1}}{4} + \frac{d_{2}}{4}\right) + x_{2}^{2} \left(\frac{d_{2}}{4} + \frac{d_{3}}{4}\right).
@@ -44,7 +44,7 @@ d_i = d(x^{(i)}), i = \overline{1, 8}.
 	\underset{\frac 1 3} {x^{(2)}},
 	\underset{\frac 1 3} {x^{(4)}}
 	\right \},
-	\end{equation},
+	\end{equation}
 	если для дисперсии наблюдений выполняется:
 	\begin{multline}\label{theorem:model-3x-D-opt:plan-2-d}
 	d(x_0, x_1, x_2) \ge \frac{d_{1} x_{1} x_{2}}{2} + x_{0}^{2} \left(\frac{d_{2}}{4} + \frac{d_{4}}{4}\right) + x_{0} \left(- \frac{d_{2} x_{1}}{2} - \frac{d_{4} x_{2}}{2}\right) + \\ + x_{1}^{2} \left(\frac{d_{1}}{4} + \frac{d_{2}}{4}\right) + x_{2}^{2} \left(\frac{d_{1}}{4} + \frac{d_{4}}{4}\right).
@@ -56,7 +56,7 @@ d_i = d(x^{(i)}), i = \overline{1, 8}.
 	\underset{\frac 1 3} {x^{(3)}},
 	\underset{\frac 1 3} {x^{(4)}}
 	\right \},
-	\end{equation},
+	\end{equation}
 	если для дисперсии наблюдений выполняется:
 	\begin{multline}\label{theorem:model-3x-D-opt:plan-3-d}
 	d(x_0, x_1, x_2) \ge \frac{d_{4} x_{1} x_{2}}{2} + x_{0}^{2} \left(\frac{d_{1}}{4} + \frac{d_{3}}{4}\right) + x_{0} \left(\frac{d_{1} x_{2}}{2} - \frac{d_{3} x_{1}}{2}\right) + \\ + x_{1}^{2} \left(\frac{d_{3}}{4} + \frac{d_{4}}{4}\right) + x_{2}^{2} \left(\frac{d_{1}}{4} + \frac{d_{4}}{4}\right).
@@ -68,7 +68,7 @@ d_i = d(x^{(i)}), i = \overline{1, 8}.
 	\underset{\frac 1 3} {x^{(3)}},
 	\underset{\frac 1 3} {x^{(4)}}
 	\right \},
-	\end{equation},
+	\end{equation}
 	если для дисперсии наблюдений выполняется:
 	\begin{multline}\label{theorem:model-3x-D-opt:plan-4-d}
 	d(x_0, x_1, x_2) \ge \frac{d_{3} x_{1} x_{2}}{2} + x_{0}^{2} \left(\frac{d_{2}}{4} + \frac{d_{4}}{4}\right) + x_{0} \left(\frac{d_{2} x_{2}}{2} + \frac{d_{4} x_{1}}{2}\right) + \\ + x_{1}^{2} \left(\frac{d_{3}}{4} + \frac{d_{4}}{4}\right) + x_{2}^{2} \left(\frac{d_{2}}{4} + \frac{d_{3}}{4}\right).
@@ -77,16 +77,16 @@ d_i = d(x^{(i)}), i = \overline{1, 8}.
 
 \textbf{Доказательство}. Доказательство данной теоремы производится аналогично доказательству теоремы \ref{main-theorem}. Для плана в точках $x^{(i)}, x^{(j)}, x^{(k)}$ запишем критерий эквавалентности Кифера-Вольфовица \eqref{theorem:model-3x-D-opt:KF-ineq}:
 \begin{equation}\label{theorem:model-3x-D-opt:KF-ineq}
-\frac{1}{d(x_0, x_1, x_2)} f'(x) M^{-1}(\varepsilon^0) f(x) \le 3
-\end{equation},
+\frac{1}{d(x_0, x_1, x_2)} f'(x) M^{-1}(\varepsilon^0) f(x) \le 3,
+\end{equation}
 выразим $d(x_0, x_1, x_2)$ и покажем, что $d(x_0, x_1, x_2)$ равно заданным дисперсиям $d_i, d_j, d_k$ в соответствующих точках.
 
-Произведём доказательство при помощи пакета компьютерной алгебры SymPy, написанном на языке Python. Её исходный код приведён в приложении \ref{appendix:3x_cube}.
+Ввиду объёмности и однотипности выкладок, описанная схема доказательства была реализована программно при помощи пакета компьютерной алгебры SymPy, написанном на языке Python. Исходный код программы приведён в приложении \ref{appendix:3x_cube}.
 
-Вывод программы:
+Результат работы программы:
 \lstinputlisting[numbers=none]{listings/3x_cube_output.txt}
-Вывод показывает, что неравенство обращается в равенство в вершинах плана. \textbf{Теорема доказана}.\\
+Вывод показывает, что неравенства обращаются в равенства в точках спектра плана, что и требовалось доказать. \textbf{Теорема доказана}.\\
 
-\textbf{Замечание}.
-В теореме \ref{theorem:model-3x-D-opt} были рассмотрены планы, точки которых находятся на верхней грани куба. Куб имеет 6 граней, причём на каждой из них можно построить аналогичные планы. Данный факт следует из того, что точки планов на других гранях эквиваленты точкам одного из планов на верхней грани с точностью до переименования независимых переменных $x_0, x_1, x_2$ и домножения на $-1$. Таким образом доказано существование $24$-ых планов для модели \eqref{model-3x:start}-\eqref{model-3x:end}.	
+\textbf{Следствие}.
+В теореме \ref{theorem:model-3x-D-opt} были рассмотрены планы, точки которых находятся на верхней грани куба. Куб имеет 6 граней, причём на каждой из них можно построить аналогичные планы. Данный факт следует из того, что точки планов на других гранях эквиваленты точкам одного из планов на верхней грани с точностью до переименования независимых переменных $x_0, x_1, x_2$ и домножения на $-1$. Таким образом доказано существование $24$-х планов для модели \eqref{model-3x:start}-\eqref{model-3x:end}.	
 

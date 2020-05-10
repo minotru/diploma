@@ -38,7 +38,9 @@ $$D\{\varepsilon_i\}=\sigma_i ^2$$
 	$$M = \sum_{i=1}^{n} \frac{1}{\sigma_i^2}f(x^{i})f'(x^{i}), |M| \ne 0 \text{ - информационная матрица Фишера};$$
 	$$Y = \sum_{i=1}^{n}\frac{1}{\sigma_i^2} y_i f(x^{i}).$$
 	И дисперсионная матрица оценок $\hat \theta$ равна
-	\begin{equation}D(\hat \theta)  = M^{-1}\end{equation}.
+	\begin{equation}
+		D\{ \hat \theta \}  = M^{-1}
+	\end{equation}.
 \end{theorem}
 
 Существуют различные критерии оптимальности плана эксперимента. В данной работе будут рассмотрены $D$-оптимальные планы.
@@ -46,14 +48,18 @@ $$D\{\varepsilon_i\}=\sigma_i ^2$$
 \begin{definition}
 	План эксперимента называется $D$-оптимальным, когда
 	\begin{equation}\label{def:d-opt}
-	|\det D\{\hat \theta\} | \rightarrow \min_{x \in X}
+	|\det D\{\hat \theta\} | \rightarrow \min_{x \in X}.
 	\end{equation}
 \end{definition}
-Но
+
+Но определитель обратной матрицы обратно пропорционален определителю исходной матрицы:
+\begin{equation*}
+\det {D\{\hat \theta\}} = \det {M^{-1}\{\hat \theta\}} = \frac 1 {\det M(x)}.
+\end{equation*}
+Таким образом задача построения $D$-оптимального плана \ref{def:d-opt} свелась к задаче о максимизации информационной матрицы плана:
 \begin{equation}
-|\det {D\{\hat \theta\}}| = \frac 1 {|\det M(x)|} \implies (\ref{def:d-opt}) \iff |det M(x)| \rightarrow \max_{x \in X}
+|det M(x)| \rightarrow \max_{x \in X}ю
 \end{equation}
-Таким образом задача построение оптимального плана свелась к максимизации информационной матрицы.
 
 Обозначим
 \begin{gather}

@@ -8,11 +8,15 @@
 %%% заглушка титульного листа, настоящий делать на основе образца в файле Titul.doc
 
 % \maketitle
-\input{diploma-titlepage}
+% \input{diploma-titlepage}
+\includepdf[pages=1]{title-page.pdf}
 
 %%% описание рефератов
 
+
 \setcounter{page}{2}
+
+\includepdf[pages=-, pagecommand={}]{task.pdf}
 
 \settocdepth{chapter}
 

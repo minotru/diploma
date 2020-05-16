@@ -109,7 +109,7 @@
 \usepackage{caption}
 \AtBeginDocument{%
   \def\contentsname{ОГЛАВЛЕНИЕ}
-  \def\bibname{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}
+  \def\bibname{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
   \renewcommand{\figurename}{Рисунок}
   \renewcommand{\tablename}{Таблица}
   \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
@@ -150,3 +150,6 @@
 }
 
 \newtheorem{definition}{Определение}
+\addto{\captionsrussian}{\renewcommand{\bibname}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}}
+
+\newcommand{\annotation}[1]{\begin{center} \bfseries \Large {#1} \end{center}}
